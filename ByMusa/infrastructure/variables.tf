@@ -53,3 +53,16 @@ variable "app_name" {
 variable "app_location" {
   type = string
 }
+
+variable "gateway_rg_name" {
+  type = string
+}
+
+variable "gateway_name" {
+  type = string
+}
+
+variable "gateway_location" {
+  type = string
+}
+

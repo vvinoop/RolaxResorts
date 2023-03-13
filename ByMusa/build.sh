@@ -19,3 +19,5 @@ terraform init
 terraform validate
 terraform plan -out tfpan -var-file dev.tfvars
 terraform apply tfplan -var-file dev.rfvars
+
+# Note: Terraform will use az cli to authenticate against azure. No need to add ClientId / ClientSecret / TenantId
