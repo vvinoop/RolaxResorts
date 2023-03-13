@@ -66,3 +66,6 @@ variable "gateway_location" {
   type = string
 }
 
+variable "private_zone_name" {
+  type = string
+}

@@ -1,5 +1,3 @@
-data "azurerm_client_config" "current_config" {}
-
 resource "azurerm_resource_group" "app_rg" {
   location = var.app_location
   name     = var.app_rg_name
@@ -10,7 +8,7 @@ resource "azurerm_container_app_environment" "app_env" {
   log_analytics_workspace_id     = azurerm_log_analytics_workspace.log_workspace.id
   name                           = var.app_env_name
   resource_group_name            = azurerm_resource_group.app_rg.name
-  internal_load_balancer_enabled = false
+  internal_load_balancer_enabled = true
   infrastructure_subnet_id       = azurerm_subnet.container_subnet.id
 }
 
@@ -25,6 +23,13 @@ resource "azurerm_container_app" "app" {
       image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
       memory = "0.5Gi"
       name   = "hello-world"
+    }
+  }
+  ingress {
+    target_port      = 80
+    external_enabled = false
+    traffic_weight {
+      percentage = 100
     }
   }
   identity {
