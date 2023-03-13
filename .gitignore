@@ -1,0 +1,6 @@
+.terraform/
+.terraform*
+
+.DS_STORE
+
+npm_modules/

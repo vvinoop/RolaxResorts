@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Static Web App</title>
+    </head>
+    <body>
+        <h1>My Static Web App</h1>
+        <p>Hello World from Container!</p>
+        <div id="hostname"></div>
+        <script>
+            var myDomain = window.location.hostname;
+            document.getElementById("hostname").innerHTML =
+                "<br>Domain name of the server: " + myDomain;
+        </script>
+    </body>
+</html>
