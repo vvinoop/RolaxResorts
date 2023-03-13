@@ -1,0 +1,5 @@
+resource_group_name="rolaxresorts"
+vnet_name="rolaxresortsvnet"
+location="uksouth"
+azurerm_log_analytics_workspace="rolaxresortsla"
+azurerm_container_app_environment="rolaxresortscappenv"
