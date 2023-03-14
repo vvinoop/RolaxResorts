@@ -1,3 +1,7 @@
+data "azurerm_container_registry" "acr" {
+  name                = var.acr_name
+  resource_group_name = var.acr_rg_name
+}
 resource "azurerm_resource_group" "app_rg" {
   location = var.app_location
   name     = var.app_rg_name
@@ -67,6 +71,6 @@ resource "azurerm_container_app" "app" {
 
 resource "azurerm_role_assignment" "acr_pull_role" {
   principal_id         = azurerm_container_app.app.identity[0].principal_id
-  scope                = azurerm_container_registry.acr.id
+  scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "AcrPull"
 }
