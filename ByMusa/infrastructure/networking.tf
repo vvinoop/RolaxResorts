@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "vnet_rg" {
   location = var.vnet_location
   name     = var.vnet_rg_name
-
+  tags     = var.tags
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -9,6 +9,7 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.vnet_location
   name                = var.vnet_name
   resource_group_name = azurerm_resource_group.vnet_rg.name
+  tags                = var.tags
 }
 
 resource "azurerm_subnet" "default" {

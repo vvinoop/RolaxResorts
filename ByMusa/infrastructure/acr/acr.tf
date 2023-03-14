@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "acr_rg" {
   location = var.acr_location
   name     = var.acr_rg_name
+  tags     = var.tags
 }
 
 resource "azurerm_container_registry" "acr" {
@@ -10,4 +11,5 @@ resource "azurerm_container_registry" "acr" {
   sku                    = var.acr_sku
   admin_enabled          = true
   anonymous_pull_enabled = false
+  tags                   = var.tags
 }

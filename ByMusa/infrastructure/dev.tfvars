@@ -20,3 +20,9 @@ private_zone_name       = "eastus.azurecontainerapps.io"
 app_custome_domain_name = "demo.easydismiss.com"
 app_env_cert_name       = "democert"
 app_env_cert_path       = "~/Desktop/cert/demo.easydismiss.pfx"
+tags = {
+  "Cloud Unit" = "Hubble"
+  "Contact"    = "vinoop.vayath@and.digital"
+  "Life-span"  = "4 weeks"
+  "Owner"      = "Vinoop Vayath"
+}

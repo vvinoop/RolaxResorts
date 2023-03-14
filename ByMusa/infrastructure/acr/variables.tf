@@ -14,3 +14,7 @@ variable "acr_sku" {
   type    = string
   default = "Basic"
 }
+
+variable "tags" {
+  type = map(string)
+}

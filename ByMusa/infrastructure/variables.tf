@@ -90,3 +90,7 @@ variable "app_env_cert_pass" {
   sensitive = true
 }
 
+variable "tags" {
+  type = map(string)
+}
+

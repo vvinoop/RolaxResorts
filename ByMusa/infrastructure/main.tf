@@ -5,6 +5,7 @@ data "azurerm_container_registry" "acr" {
 resource "azurerm_resource_group" "app_rg" {
   location = var.app_location
   name     = var.app_rg_name
+  tags     = var.tags
 }
 
 resource "azurerm_container_app_environment" "app_env" {
@@ -21,6 +22,8 @@ resource "azurerm_container_app_environment" "app_env" {
     update = "2h"
     read   = "30m"
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_container_app_environment_certificate" "appenv_cert" {
@@ -28,6 +31,7 @@ resource "azurerm_container_app_environment_certificate" "appenv_cert" {
   certificate_password         = var.app_env_cert_pass
   container_app_environment_id = azurerm_container_app_environment.app_env.id
   name                         = var.app_env_cert_name
+  tags                         = var.tags
 }
 
 resource "azurerm_container_app" "app" {
@@ -49,7 +53,8 @@ resource "azurerm_container_app" "app" {
     target_port      = 80
     external_enabled = true
     traffic_weight {
-      percentage = 100
+      latest_revision = true
+      percentage      = 100
     }
 
     custom_domain {
@@ -67,6 +72,8 @@ resource "azurerm_container_app" "app" {
     update = "2h"
     read   = "30m"
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_role_assignment" "acr_pull_role" {
