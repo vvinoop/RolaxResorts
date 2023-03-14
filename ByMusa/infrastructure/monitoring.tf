@@ -8,3 +8,4 @@ resource "azurerm_log_analytics_workspace" "log_workspace" {
   name                = var.log_name
   resource_group_name = azurerm_resource_group.log_rg.name
 }
+

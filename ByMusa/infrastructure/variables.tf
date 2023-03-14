@@ -50,6 +50,10 @@ variable "app_name" {
   type = string
 }
 
+variable "app_image" {
+  type = string
+}
+
 variable "app_location" {
   type = string
 }
@@ -69,3 +73,20 @@ variable "gateway_location" {
 variable "private_zone_name" {
   type = string
 }
+
+variable "app_custome_domain_name" {
+  type = string
+}
+
+variable "app_env_cert_name" {
+  type = string
+}
+variable "app_env_cert_path" {
+  type = string
+}
+
+variable "app_env_cert_pass" {
+  type      = string
+  sensitive = true
+}
+
