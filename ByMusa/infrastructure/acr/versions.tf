@@ -10,7 +10,7 @@ terraform {
   #   resource_group_name  = "pRG-Terraform"
   #   storage_account_name = "pstrgaccountmusa"
   #   container_name       = "tfstate"
-  #   key                  = "dev/app.tfstate"
+  #   key                  = "dev/acr.tfstate"
   # }
 }
 
