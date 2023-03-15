@@ -26,6 +26,18 @@ resource "azurerm_container_app_environment" "app_env" {
   tags = var.tags
 }
 
+resource "azurerm_user_assigned_identity" "app_identity" {
+  location            = azurerm_resource_group.app_rg.location
+  name                = "app_identity"
+  resource_group_name = azurerm_resource_group.app_rg.name
+}
+
+resource "azurerm_role_assignment" "acr_pull_role" {
+  principal_id         = azurerm_user_assigned_identity.app_identity.principal_id
+  scope                = data.azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+}
+
 resource "azurerm_container_app_environment_certificate" "appenv_cert" {
   certificate_blob_base64      = filebase64(var.app_env_cert_path)
   certificate_password         = var.app_env_cert_pass
@@ -49,6 +61,12 @@ resource "azurerm_container_app" "app" {
       memory = "0.5Gi"
     }
   }
+
+  registry {
+    server   = data.azurerm_container_registry.acr.login_server
+    identity = azurerm_user_assigned_identity.app_identity.id
+  }
+
   ingress {
     target_port      = 80
     external_enabled = true
@@ -63,8 +81,13 @@ resource "azurerm_container_app" "app" {
     }
   }
   identity {
-    type = "SystemAssigned"
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.app_identity.id]
   }
+
+  depends_on = [
+    azurerm_role_assignment.acr_pull_role
+  ]
 
   timeouts {
     create = "2h"
@@ -74,10 +97,4 @@ resource "azurerm_container_app" "app" {
   }
 
   tags = var.tags
-}
-
-resource "azurerm_role_assignment" "acr_pull_role" {
-  principal_id         = azurerm_container_app.app.identity[0].principal_id
-  scope                = data.azurerm_container_registry.acr.id
-  role_definition_name = "AcrPull"
 }

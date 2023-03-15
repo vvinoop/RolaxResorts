@@ -19,13 +19,6 @@ resource "azurerm_subnet" "default" {
   virtual_network_name = azurerm_virtual_network.vnet.name
 }
 
-# resource "azurerm_subnet" "appgw_subnet" {
-#   address_prefixes     = ["10.1.1.0/24"]
-#   name                 = "app-gateway-subnet"
-#   resource_group_name  = azurerm_resource_group.vnet_rg.name
-#   virtual_network_name = azurerm_virtual_network.vnet.name
-# }
-
 resource "azurerm_subnet" "container_subnet" {
   address_prefixes     = ["10.1.2.0/23"]
   name                 = "container-subnet"
