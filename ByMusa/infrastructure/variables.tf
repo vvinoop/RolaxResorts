@@ -58,22 +58,6 @@ variable "app_location" {
   type = string
 }
 
-variable "gateway_rg_name" {
-  type = string
-}
-
-variable "gateway_name" {
-  type = string
-}
-
-variable "gateway_location" {
-  type = string
-}
-
-variable "private_zone_name" {
-  type = string
-}
-
 variable "app_custome_domain_name" {
   type = string
 }
